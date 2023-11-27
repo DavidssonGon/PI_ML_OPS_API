@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 consulta1 = 'DataSet/PlayTimeGenre.csv'
-consulta2 = 'EDataSet/UserForGenre.csv'
+consulta2 = 'DataSet/UserForGenre.csv'
 consulta3 = 'DataSet/UsersRecommend.csv'
 consulta4 = 'DataSet/UsersWorstDeveloper.csv'
 consulta5 = 'DataSet/sentiment_analysis.csv'
@@ -35,7 +35,7 @@ def UserForGenre(genero:str):
     if not isinstance(genero, str):
         return {'Error': 'El género debe ser una cadena (string)'}
 
-    df_def2 = pd.read_csv(consulta2, compression='gzip')
+    df_def2 = pd.read_csv(consulta2)
 
     df_genero = df_def2[df_def2['Genres'].str.contains(genero, case=False, na=False)]
 
@@ -68,7 +68,7 @@ def UsersRecommend(anio:int):
     if not isinstance(anio, int):
         return {'Error': 'El año debe ser un entero número entero (2010)'}
 
-    df_def3 = pd.read_csv(consulta3, compression='gzip')
+    df_def3 = pd.read_csv(consulta3)
 
     df_anio = df_def3[df_def3['Year'] == anio]
 
@@ -96,7 +96,7 @@ def UsersWorstDeveloper(anio:int):
     if not isinstance(anio, int):
         return {'Error': 'El año debe ser un número entero (2010)'}
 
-    df_def4 = pd.read_csv(consulta4, compression='gzip')
+    df_def4 = pd.read_csv(consulta4)
 
     df_anio = df_def4[df_def4['Year'] == anio]
 
@@ -127,7 +127,7 @@ def sentiment_analysis(desarrolladora:str):
     
     desarrolladora = desarrolladora.lower()
 
-    df_def5 = pd.read_csv(consulta5, compression='gzip')
+    df_def5 = pd.read_csv(consulta5)
 
     df_desarrolladora = df_def5[df_def5['Developer'].str.lower() == desarrolladora]
 

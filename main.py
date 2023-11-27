@@ -47,13 +47,12 @@ async def imput_anio_def4(anio:int):
     resultado_def4 = UsersWorstDeveloper(anio_int)
     return resultado_def4
 
-@app.get('/sentiment_analysis/anio/{desarrolladora}')
+@app.get('/sentiment_analysis/desarrolladora/{desarrolladora}')
 async def imput_desarrolladora_def5(desarrolladora:str):
     try:
         resultado_def5 = sentiment_analysis(desarrolladora)
         return resultado_def5
     except Exception as e:
         return {'Error': str(e)}
-        
-     
+
     
