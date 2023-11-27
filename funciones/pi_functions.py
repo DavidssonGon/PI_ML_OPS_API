@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-consulta1 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\PlayTimeGenre.gzip'
+consulta1 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\PlayTimeGenre.csv'
 consulta2 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UserForGenre.gzip'
 consulta3 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersRecommend.gzip'
 consulta4 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersWorstDeveloper.gzip'
@@ -13,7 +13,7 @@ def PlayTimeGenre(genero:str):
     if not isinstance(genero, str):
         return {'Error': 'El género debe ser una cadena (string)'}
     
-    df_def1 = pd.read_csv(consulta1, compression='gzip')
+    df_def1 = pd.read_csv(consulta1)
 
     df_genero = df_def1[df_def1['Genres'].str.contains(genero, case=False, na=False)]
 
