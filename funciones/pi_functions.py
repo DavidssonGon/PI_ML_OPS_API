@@ -2,10 +2,10 @@ import numpy as np
 import pandas as pd
 
 consulta1 = 'DataSet/PlayTimeGenre.csv'
-consulta2 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UserForGenre.gzip'
-consulta3 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersRecommend.gzip'
-consulta4 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersWorstDeveloper.gzip'
-consulta5 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\sentiment_analysis.gzip'
+consulta2 = 'EDataSet/UserForGenre.csv'
+consulta3 = 'DataSet/UsersRecommend.csv'
+consulta4 = 'DataSet/UsersWorstDeveloper.csv'
+consulta5 = 'DataSet/sentiment_analysis.csv'
 
 # Función N°1
 def PlayTimeGenre(genero:str):
@@ -30,7 +30,7 @@ def PlayTimeGenre(genero:str):
 
 
 # Función N°2
-def UserForGenre(genero):
+def UserForGenre(genero:str):
     
     if not isinstance(genero, str):
         return {'Error': 'El género debe ser una cadena (string)'}
@@ -63,10 +63,10 @@ def UserForGenre(genero):
 
 
 # Función N°3
-def UsersRecommend(anio):
+def UsersRecommend(anio:int):
 
     if not isinstance(anio, int):
-        return {'Error': 'El año debe ser un entero'}
+        return {'Error': 'El año debe ser un entero número entero (2010)'}
 
     df_def3 = pd.read_csv(consulta3, compression='gzip')
 
@@ -91,10 +91,10 @@ def UsersRecommend(anio):
 
 
 # Función N°4
-def UsersWorstDeveloper(anio):
+def UsersWorstDeveloper(anio:int):
 
     if not isinstance(anio, int):
-        return {'Error': 'El año debe ser un entero'}
+        return {'Error': 'El año debe ser un número entero (2010)'}
 
     df_def4 = pd.read_csv(consulta4, compression='gzip')
 
@@ -120,7 +120,7 @@ def UsersWorstDeveloper(anio):
 
 # Función N°5
 
-def sentiment_analysis(desarrolladora):
+def sentiment_analysis(desarrolladora:str):
 
     if not isinstance(desarrolladora, str):
         return {'Error': 'La Desarrolladora debe ser una cadena (string)'}
