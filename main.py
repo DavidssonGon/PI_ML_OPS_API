@@ -9,6 +9,6 @@ def hola():
     return {'API en proceso'}
 
 @app.get('/PlayTimeGenre/genero/{genero}')
-async def imput_genero(Genero:str):
-    resultado = PlayTimeGenre(Genero)
+async def imput_genero(genero:str):
+    resultado = PlayTimeGenre(genero)
     return resultado
