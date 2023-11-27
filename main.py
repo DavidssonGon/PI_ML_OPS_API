@@ -10,4 +10,5 @@ def hola():
 
 @app.get('/PlayTimeGenre/{genero}')
 async def imput_genero(genero: str):
-    return PlayTimeGenre(genero)
+    resultado = PlayTimeGenre(genero)
+    return resultado
