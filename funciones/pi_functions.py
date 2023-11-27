@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-consulta1 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\PlayTimeGenre.csv'
+consulta1 = 'DataSet/PlayTimeGenre.csv'
 consulta2 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UserForGenre.gzip'
 consulta3 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersRecommend.gzip'
 consulta4 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\UsersWorstDeveloper.gzip'
