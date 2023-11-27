@@ -8,7 +8,7 @@ consulta4 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\Da
 consulta5 = 'E:\\AAADATOS\Henry\\AA_Data_Science\\MATERIAL_PI\\PI_ML_OPS_API\\DataSet\\sentiment_analysis.gzip'
 
 # Función N°1
-def PlayTimeGenre(genero):
+def PlayTimeGenre(genero:str):
 
     if not isinstance(genero, str):
         return {'Error': 'El género debe ser una cadena (string)'}
@@ -121,35 +121,27 @@ def UsersWorstDeveloper(anio):
 # Función N°5
 
 def sentiment_analysis(desarrolladora):
-    
-    # Se verifica que la desarrolladora sea una cadena (string)
+
     if not isinstance(desarrolladora, str):
         return {'Error': 'La Desarrolladora debe ser una cadena (string)'}
     
-    # Se inicializa el Data Frame al que se le hara la consulta
+    desarrolladora = desarrolladora.lower()
+
     df_def5 = pd.read_csv(consulta5, compression='gzip')
-    
-    # Se filtra el DataFrame para incluir solo las filas correspondientes a la desarrolladora dada
-    df_desarrolladora = df_def5[df_def5['Developer'] == desarrolladora]
-    
-    # Se verifica si el DataFrame resultante está vacío
+
+    df_desarrolladora = df_def5[df_def5['Developer'].str.lower() == desarrolladora]
+
     if df_desarrolladora.empty:
         return {'Error': f'No hay datos para la desarrolladora {desarrolladora}'}
-    
-    # Se realiza un mapeo de valores originales a equivalentes deseados
+
     mapeo_sentimientos = {0: "Negative", 1: "Neutral", 2: "Positive"}
-    
-    # Se reemplaza los valores originales por los equivalentes deseados
+
     df_desarrolladora['Sentiment_Analysis'] = df_desarrolladora['Sentiment_Analysis'].map(mapeo_sentimientos)
-    
-    # Se define la lista ordenada de sentimientos
+
     sentimientos_ordenados = ["Negative", "Neutral", "Positive"]
-    
-    # Se agrupa por "Sentiment_Analysis" y cuenta la frecuencia de cada valor
+
     conteo_sentimientos = df_desarrolladora['Sentiment_Analysis'].value_counts().reindex(sentimientos_ordenados, fill_value=0).to_dict()
-    
-    # Se construye el diccionario de resultado con etiquetas
+
     resultado = {desarrolladora: {f"{sentimiento} =": conteo_sentimientos[sentimiento] for sentimiento in sentimientos_ordenados}}
     
     return resultado
-
