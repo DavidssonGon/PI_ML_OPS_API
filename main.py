@@ -6,9 +6,9 @@ app = FastAPI()
 
 @app.get('/')
 def hola():
-    return {'Bienvenidos a mi api'}
+    return {'API en proceso'}
 
-@app.get('/PlayTimeGenre/{genero}')
-async def imput_genero(genero:str):
-    resultado = PlayTimeGenre(genero)
+@app.get('/PlayTimeGenre/genero/{genero}')
+async def imput_genero(Genero:str):
+    resultado = PlayTimeGenre(Genero)
     return resultado
