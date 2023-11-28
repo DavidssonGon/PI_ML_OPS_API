@@ -6,6 +6,7 @@ consulta2 = 'DataSet/UserForGenre.csv'
 consulta3 = 'DataSet/UsersRecommend.csv'
 consulta4 = 'DataSet/UsersWorstDeveloper.csv'
 consulta5 = 'DataSet/sentiment_analysis.csv'
+consulta6 = 'DataSet/recomendacion_juego.csv'
 
 # Función N°1
 def PlayTimeGenre(genero:str):
@@ -143,5 +144,26 @@ def sentiment_analysis(desarrolladora:str):
     conteo_sentimientos = df_desarrolladora['Sentiment_Analysis'].value_counts().reindex(sentimientos_ordenados, fill_value=0).to_dict()
 
     resultado = {desarrolladora: {f"{sentimiento} =": conteo_sentimientos[sentimiento] for sentimiento in sentimientos_ordenados}}
+    
+    return resultado
+
+
+# Función N°6
+
+def recomendacion_juego(id_producto:int):
+    
+    if not isinstance(id_producto, int):
+        return {'Error': 'El id de producto debe ser un número entero (744570)'}
+    
+    df_def6 = pd.read_csv(consulta6)
+
+    if id_producto not in df_def6["Item_Id"].values:
+        return {"El id de producto ingresado no existe en la base de datos"}
+
+    indice_juego = df_def6[df_def6["Item_Id"] == id_producto].index[0]
+
+    recomendaciones = df_def6.loc[indice_juego, "Recommend"]
+
+    resultado = {f"5 juegos recomendados similares al ingresado {id_producto}": recomendaciones}
     
     return resultado

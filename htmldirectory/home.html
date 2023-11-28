@@ -1,15 +1,5 @@
-from fastapi import FastAPI
-import uvicorn
-import os
-from funciones.pi_functions import  PlayTimeGenre, UserForGenre, UsersRecommend, UsersWorstDeveloper, sentiment_analysis, recomendacion_juego
-from fastapi.responses import HTMLResponse
 
 
-app = FastAPI()
-
-@app.get('/', response_class=HTMLResponse)
-def hola():
-    html_content = """
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -83,75 +73,4 @@ def hola():
 
         </body>
     </html>
-"""
-    return HTMLResponse(content=html_content)
-
-
-@app.get('/PlayTimeGenre/genero/{genero}')
-async def ingresa_un_genero_def1(genero:str):
-    try:
-        resultado_def1 = PlayTimeGenre(genero)
-        return resultado_def1
-    except Exception as e:
-        return {'Error': str(e)}
-    
-    
-@app.get('/UserForGenre/genero/{genero}')
-async def ingresa_un_genero_def2(genero:str):
-    try:
-        resultado_def2 = UserForGenre(genero)
-        return resultado_def2
-    except Exception as e:
-        return {'Error': str(e)}
-    
-    
-@app.get('/UsersRecommend/anio/{anio}')
-async def ingresa_un_año_def3(anio:int):
-    try:
-        anio_int = int(anio)
-    except ValueError:
-        return {"detail": [{"type": "invalid_input", "msg": "El año debe ser un número entero"}]}
-     
-    resultado_def3 = UsersRecommend(anio_int)
-    return resultado_def3
-      
-      
-@app.get('/UsersWorstDeveloper/anio/{anio}')
-async def ingresa_un_año_def4(anio:int):
-    try:
-        anio_int = int(anio)
-    except ValueError:
-        return {"detail": [{"type": "invalid_input", "msg": "El año debe ser un número entero"}]}
-     
-    resultado_def4 = UsersWorstDeveloper(anio_int)
-    return resultado_def4
-
-@app.get('/sentiment_analysis/desarrolladora/{desarrolladora}')
-async def ingresa_una_desarrolladora_def5(desarrolladora:str):
-    try:
-        resultado_def5 = sentiment_analysis(desarrolladora)
-        return resultado_def5
-    except Exception as e:
-        return {'Error': str(e)}
-    
-
-@app.get('/recomendacion_juego/id/{id_producto}')
-async def ingresa_un_id_def6(id_producto:int):
-    try:
-        id_int = int(id_producto)
-    except ValueError:
-        return {"detail": [{"type": "invalid_input", "msg": "El id de producto debe ser un número entero (744570)"}]}
-    
-    resultado_def6 = recomendacion_juego(id_int)
-    return resultado_def6   
-
-
-@app.post('/recomendacion_juego')
-async def ingresa_un_id(id_producto: int):
-    try:
-        id_int = int(id_producto)
-    except ValueError:
-        return {"detail": [{"type": "invalid_input", "msg": "El id de producto debe ser un número entero (744570)"}]}
-    
-    resultado_def6 = recomendacion_juego(id_int)
-    return resultado_def6
+  
